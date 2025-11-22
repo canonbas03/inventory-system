@@ -33,6 +33,10 @@ include "../includes/header.php";
     </select>
 </form>
 
+<a href="export_products.php" class="btn">Export CSV</a>
+<a href="export_products.php?category=2&supplier=5" class="btn">Export Filtered CSV</a>
+
+
 <div id="product-table">
     <table border="1" cellpadding="10">
         <tr>
