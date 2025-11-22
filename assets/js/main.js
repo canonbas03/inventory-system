@@ -1,15 +1,17 @@
 $(document).ready(function () {
-    console.log("Inventory System Loaded");
-
     function loadProducts() {
-        var query = $("#search").val();
-        var category = $("#filterCategory").val();
-        var supplier = $("#filterSupplier").val();
+        var query = $("#search").val();                // search text
+        var category = $("#filterCategory").val();     // selected category
+        var supplier = $("#filterSupplier").val();     // selected supplier
 
         $.ajax({
-            url: "/inventory/ajax/filter_products.php",
+            url: "../ajax/filter_products.php",        // unified endpoint
             method: "GET",
-            data: { q: query, category: category, supplier: supplier },
+            data: {
+                q: query,
+                category: category,
+                supplier: supplier
+            },
             success: function (data) {
                 $("#product-table table").html(
                     "<tr>" +
@@ -20,17 +22,11 @@ $(document).ready(function () {
         });
     }
 
-    // Trigger on search keyup
+    // Trigger on search input
     $("#search").on("keyup", loadProducts);
 
-    // Trigger on filter change
+    // Trigger on dropdown change
     $("#filterCategory, #filterSupplier").on("change", loadProducts);
-
-    // Trigger on filter form submit (optional)
-    $("#filterForm").submit(function (e) {
-        e.preventDefault();
-        loadProducts();
-    });
 
     // Initial load
     loadProducts();
