@@ -9,6 +9,33 @@ include "../includes/header.php";
 <label>Search:</label>
 <input type="text" id="search" placeholder="Search by name, SKU, category, or supplier">
 
+<form id="filterForm">
+    <label>Category:</label>
+    <select name="category" id="filterCategory">
+        <option value="">All Categories</option>
+        <?php
+        $cats = $conn->query("SELECT * FROM categories");
+        while ($c = $cats->fetch_assoc()) {
+            echo "<option value='{$c['id']}'>{$c['name']}</option>";
+        }
+        ?>
+    </select>
+
+    <label>Supplier:</label>
+    <select name="supplier" id="filterSupplier">
+        <option value="">All Suppliers</option>
+        <?php
+        $sups = $conn->query("SELECT * FROM suppliers");
+        while ($s = $sups->fetch_assoc()) {
+            echo "<option value='{$s['id']}'>{$s['name']}</option>";
+        }
+        ?>
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
+
 <div id="product-table">
     <table border="1" cellpadding="10">
         <tr>

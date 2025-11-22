@@ -1,15 +1,15 @@
 $(document).ready(function () {
     console.log("Inventory System Loaded");
-});
 
-$(document).ready(function () {
-    $("#search").on("keyup", function () {
-        var query = $(this).val();
+    function loadProducts() {
+        var query = $("#search").val();
+        var category = $("#filterCategory").val();
+        var supplier = $("#filterSupplier").val();
 
         $.ajax({
-            url: "/inventory/ajax/search_products.php",
+            url: "/inventory/ajax/filter_products.php",
             method: "GET",
-            data: { q: query },
+            data: { q: query, category: category, supplier: supplier },
             success: function (data) {
                 $("#product-table table").html(
                     "<tr>" +
@@ -18,5 +18,20 @@ $(document).ready(function () {
                 );
             }
         });
+    }
+
+    // Trigger on search keyup
+    $("#search").on("keyup", loadProducts);
+
+    // Trigger on filter change
+    $("#filterCategory, #filterSupplier").on("change", loadProducts);
+
+    // Trigger on filter form submit (optional)
+    $("#filterForm").submit(function (e) {
+        e.preventDefault();
+        loadProducts();
     });
+
+    // Initial load
+    loadProducts();
 });

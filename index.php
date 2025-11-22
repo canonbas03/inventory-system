@@ -20,22 +20,37 @@ $low_stock = $conn->query("
 
 <h2>Inventory Dashboard</h2>
 
-<div style="display:flex; gap:20px; margin-bottom:30px;">
-    <div style="padding:20px; border:1px solid #ccc; flex:1;">
-        <h3>Total Products</h3>
-        <p style="font-size:24px;"><?= $total_products ?></p>
-    </div>
-    <div style="padding:20px; border:1px solid #ccc; flex:1;">
-        <h3>Total Categories</h3>
-        <p style="font-size:24px;"><?= $total_categories ?></p>
-    </div>
-    <div style="padding:20px; border:1px solid #ccc; flex:1;">
-        <h3>Total Suppliers</h3>
-        <p style="font-size:24px;"><?= $total_suppliers ?></p>
-    </div>
+<div style="display:flex; gap:20px; margin-bottom:30px; flex-wrap:wrap;">
+    <a href="products/list.php" style="text-decoration:none; color:black;">
+        <div style="flex:1; padding:20px; border:1px solid #ccc; border-radius:10px; text-align:center; background:#f0f8ff;">
+            <h3>Total Products</h3>
+            <p style="font-size:24px;"><?= $total_products ?></p>
+        </div>
+    </a>
+
+    <a href="categories/list.php" style="text-decoration:none; color:black;">
+        <div style="flex:1; padding:20px; border:1px solid #ccc; border-radius:10px; text-align:center; background:#f9f0ff;">
+            <h3>Total Categories</h3>
+            <p style="font-size:24px;"><?= $total_categories ?></p>
+        </div>
+    </a>
+
+    <a href="suppliers/list.php" style="text-decoration:none; color:black;">
+        <div style="flex:1; padding:20px; border:1px solid #ccc; border-radius:10px; text-align:center; background:#fff0f0;">
+            <h3>Total Suppliers</h3>
+            <p style="font-size:24px;"><?= $total_suppliers ?></p>
+        </div>
+    </a>
+
+    <a href="products/list.php" style="text-decoration:none; color:black;">
+        <div style="flex:1; padding:20px; border:1px solid #ccc; border-radius:10px; text-align:center; background:#fffbe0;">
+            <h3>Low Stock Products</h3>
+            <p style="font-size:24px; color:red;"><?= $low_stock->num_rows ?></p>
+        </div>
+    </a>
 </div>
 
-<h3>Low Stock Products</h3>
+<h3>Low Stock Products Details</h3>
 <?php if ($low_stock->num_rows > 0): ?>
     <table border="1" cellpadding="10">
         <tr>
