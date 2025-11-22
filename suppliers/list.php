@@ -1,35 +1,48 @@
 <?php
 include "../includes/db.php";
-include "../includes/header.php";
+include "../includes/header.php";  // includes CSS, nav, etc.
 ?>
 
 <h2>Suppliers</h2>
 <a href="add.php">Add Supplier</a><br><br>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Actions</th>
-    </tr>
+<input type="text" id="searchSupplier" placeholder="Search suppliers by name">
 
-    <?php
-    $result = $conn->query("SELECT * FROM suppliers ORDER BY id ASC");
-    while ($row = $result->fetch_assoc()):
-    ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= htmlspecialchars($row['name']) ?></td>
-            <td><?= htmlspecialchars($row['phone']) ?></td>
-            <td><?= htmlspecialchars($row['email']) ?></td>
-            <td>
-                <a href="edit.php?id=<?= $row['id'] ?>">Edit</a> |
-                <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this supplier?')">Delete</a>
-            </td>
-        </tr>
-    <?php endwhile; ?>
-</table>
+<div id="supplier-table">
+    <table class="table" border="1" cellpadding="10"> <!-- you can add your custom class -->
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- rows will be loaded by AJAX -->
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function loadSuppliers() {
+            $.ajax({
+                url: "../ajax/filter_suppliers.php",
+                method: "GET",
+                data: {
+                    q: $("#searchSupplier").val()
+                },
+                success: function(data) {
+                    $("#supplier-table tbody").html(data); // update tbody only
+                }
+            });
+        }
+
+        $("#searchSupplier").on("keyup", loadSuppliers);
+
+        loadSuppliers(); // initial load
+    });
+</script>
 
 <?php include "../includes/footer.php"; ?>

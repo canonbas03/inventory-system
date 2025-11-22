@@ -6,26 +6,41 @@ include "../includes/header.php";
 <h2>Categories</h2>
 <a href="add.php">Add Category</a><br><br>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Actions</th>
-    </tr>
+<input type="text" id="searchCategory" placeholder="Search categories by name">
 
-    <?php
-    $result = $conn->query("SELECT * FROM categories ORDER BY id ASC");
-    while ($row = $result->fetch_assoc()):
-    ?>
+<div id="category-table">
+    <table border="1" cellpadding="10">
         <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= htmlspecialchars($row['name']) ?></td>
-            <td>
-                <a href="edit.php?id=<?= $row['id'] ?>">Edit</a> |
-                <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Delete this category?')">Delete</a>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
         </tr>
-    <?php endwhile; ?>
-</table>
+        <!-- rows will be loaded by AJAX -->
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function loadCategories() {
+            $.ajax({
+                url: "../ajax/filter_categories.php",
+                method: "GET",
+                data: {
+                    q: $("#searchCategory").val()
+                },
+                success: function(data) {
+                    $("#category-table table").html(
+                        "<tr><th>ID</th><th>Name</th><th>Actions</th></tr>" + data
+                    );
+                }
+            });
+        }
+
+        $("#searchCategory").on("keyup", loadCategories);
+
+        loadCategories(); // initial load
+    });
+</script>
 
 <?php include "../includes/footer.php"; ?>
