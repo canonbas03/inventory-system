@@ -2,6 +2,7 @@
 include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
+include "../includes/audit.php";
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -47,6 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $mov->execute();
 
+            // Log audit
+            log_action($conn, $_SESSION['user_id'], 'add', 'products', $product_id, "Added product $name");
 
             echo "<script>alert('Product added successfully!'); 
                 window.location='list.php';</script>";
