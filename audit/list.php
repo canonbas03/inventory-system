@@ -3,6 +3,12 @@ include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
 
+// Only admin can access
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: /inventory/auth/login.php");
+    exit;
+}
+
 $result = $conn->query("
     SELECT a.*, u.username
     FROM audit_log a
