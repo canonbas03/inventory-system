@@ -1,5 +1,6 @@
 <?php
 include "../includes/db.php";
+include "../includes/auth_check.php";
 
 // 1. Check if the product ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {

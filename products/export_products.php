@@ -1,6 +1,6 @@
 <?php
 include "../includes/db.php";
-
+include "../includes/auth_check.php";
 // Optional: you can filter export by category/supplier via GET parameters
 $category = isset($_GET['category']) && $_GET['category'] !== '' ? intval($_GET['category']) : null;
 $supplier = isset($_GET['supplier']) && $_GET['supplier'] !== '' ? intval($_GET['supplier']) : null;

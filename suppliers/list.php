@@ -1,4 +1,5 @@
 <?php
+include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";  // includes CSS, nav, etc.
 ?>
@@ -14,6 +15,8 @@ include "../includes/header.php";  // includes CSS, nav, etc.
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
                 <th>Actions</th>
             </tr>
         </thead>

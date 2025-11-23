@@ -29,6 +29,8 @@ while ($row = $result->fetch_assoc()) {
     echo "<tr>
         <td>{$row['id']}</td>
         <td>" . htmlspecialchars($row['name']) . "</td>
+        <td>" . htmlspecialchars($row['phone']) . "</td>
+        <td>" . htmlspecialchars($row['email']) . "</td>
         <td>
             <a href='edit.php?id={$row['id']}'>Edit</a> |
             <a href='delete.php?id={$row['id']}' onclick='return confirm(\"Delete this supplier?\")'>Delete</a>

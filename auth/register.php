@@ -4,7 +4,7 @@ include "../includes/db.php";
 
 // Only admin can access
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../login.php");
+    header("Location: /inventory/auth/login.php");
     exit;
 }
 

@@ -1,6 +1,8 @@
 <?php
+include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
+
 ?>
 
 <h2>Categories</h2>

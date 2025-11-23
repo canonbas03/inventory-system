@@ -1,4 +1,5 @@
 <?php
+include "../includes/auth_check.php";
 include "../includes/db.php";
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) die("Invalid supplier ID");

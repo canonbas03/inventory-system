@@ -1,6 +1,8 @@
 <?php
+include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
+
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) die("Invalid category ID");
 
