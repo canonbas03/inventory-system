@@ -31,6 +31,8 @@ $basePath = "/inventory"; // adjust if project folder changes
                     <a href="<?= $basePath ?>/auth/logout.php">Logout</a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
                         | <a href="<?= $basePath ?>/auth/register.php">Register User</a>
+                        | <a href="<?= $basePath ?>/audit/list.php">Logs</a>
+
                     <?php endif; ?>
                 </li>
             <?php else: ?>
