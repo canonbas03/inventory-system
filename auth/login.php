@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../includes/db.php";
+include "../includes/audit.php";
 
 $error = '';
 
@@ -18,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
+
+        log_action($conn, $user['id'], 'login', null, null, "User '$username' logged in");
+
         header("Location: ../index.php");
         exit;
     } else {

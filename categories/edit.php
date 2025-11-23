@@ -2,6 +2,7 @@
 include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
+include "../includes/audit.php";
 
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) die("Invalid category ID");
@@ -17,9 +18,22 @@ if (!$category) die("Category not found");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
     if (!empty($name)) {
+        $old_name = $category['name'];
+        $username = $_SESSION['username'];
+
         $stmt = $conn->prepare("UPDATE categories SET name=? WHERE id=?");
         $stmt->bind_param("si", $name, $id);
         $stmt->execute();
+
+        log_action(
+            $conn,
+            $_SESSION['user_id'],
+            'edit',
+            'categories',
+            $id,
+            "User '$username' updated category from '$old_name' to '$name'"
+        );
+
         header("Location: list.php");
         exit;
     } else {

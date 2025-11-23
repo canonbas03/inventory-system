@@ -2,6 +2,7 @@
 include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
+include "../includes/audit.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
@@ -12,6 +13,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("INSERT INTO suppliers (name, phone, email) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $name, $phone, $email);
         if ($stmt->execute()) {
+
+            log_action(
+                $conn,
+                $_SESSION['user_id'],
+                'add',
+                'suppliers',
+                $conn->insert_id,
+                "User '{$_SESSION['username']}' added supplier '$name'"
+            );
+
             header("Location: list.php");
             exit;
         } else {

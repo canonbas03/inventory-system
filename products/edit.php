@@ -2,6 +2,8 @@
 include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
+include "../includes/audit.php";
+
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) die("Invalid ID");
 
@@ -34,6 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ");
     $stmt->bind_param("ssidiiii", $name, $sku, $quantity, $price, $category_id, $supplier_id, $critical, $id);
     $stmt->execute();
+
+    // After updating product
+    log_action($conn, $_SESSION['user_id'], 'edit', 'products', $id, "Edited product $name. Quantity change: $change_amount");
+
 
     // Log stock movement only if quantity changed
     if ($change_amount != 0) {

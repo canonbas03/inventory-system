@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../includes/db.php";
+include "../includes/audit.php";
 
 // Only admin can access
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
@@ -22,6 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sss", $username, $hash, $role);
         if ($stmt->execute()) {
             $success = "User created successfully!";
+
+            // Log the action
+            $admin_username = $_SESSION['username']; // who created the user
+            log_action(
+                $conn,
+                $_SESSION['user_id'],
+                'register',
+                'users',
+                $conn->insert_id,
+                "Admin '$admin_username' registered new user '$username' with role '$role'"
+            );
         } else {
             $error = "Error: " . $conn->error;
         }
