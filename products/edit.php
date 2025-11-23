@@ -22,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $supplier_id = intval($_POST['supplier']);
     $critical = intval($_POST['critical']);
 
+    $old_quantity = $product['quantity'];
+    $new_quantity = intval($_POST['quantity']);
+    $change_amount = $new_quantity - $old_quantity;
+
+
     $stmt = $conn->prepare("
         UPDATE products 
         SET name=?, sku=?, quantity=?, price=?, category_id=?, supplier_id=?, critical_level=? 
@@ -29,6 +34,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ");
     $stmt->bind_param("ssidiiii", $name, $sku, $quantity, $price, $category_id, $supplier_id, $critical, $id);
     $stmt->execute();
+
+    // Log stock movement only if quantity changed
+    if ($change_amount != 0) {
+        $reason = 'adjust';
+
+        $mov = $conn->prepare("
+            INSERT INTO stock_movements (product_id, change_amount, old_quantity, new_quantity, reason, created_by)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ");
+        $mov->bind_param(
+            "iiiisi",
+            $id,
+            $change_amount,
+            $old_quantity,
+            $new_quantity,
+            $reason,
+            $_SESSION['user_id']
+        );
+        $mov->execute();
+    }
+
     header("Location: list.php?msg=updated");
     exit();
 }
