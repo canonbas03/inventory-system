@@ -60,7 +60,7 @@ include "../includes/header.php";
 
         function loadProducts() {
             $.ajax({
-                url: "../ajax/filter_products.php",
+                url: "../api/filter_products.php",
                 method: "GET",
                 data: {
                     q: $("#search").val(),

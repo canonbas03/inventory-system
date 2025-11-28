@@ -31,7 +31,7 @@ include "../includes/header.php";  // includes CSS, nav, etc.
     $(document).ready(function() {
         function loadSuppliers() {
             $.ajax({
-                url: "../ajax/filter_suppliers.php",
+                url: "../api/filter_suppliers.php",
                 method: "GET",
                 data: {
                     q: $("#searchSupplier").val()

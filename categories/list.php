@@ -26,7 +26,7 @@ include "../includes/header.php";
     $(document).ready(function() {
         function loadCategories() {
             $.ajax({
-                url: "../ajax/filter_categories.php",
+                url: "../api/filter_categories.php",
                 method: "GET",
                 data: {
                     q: $("#searchCategory").val()

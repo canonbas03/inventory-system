@@ -5,7 +5,7 @@ $(document).ready(function () {
         var supplier = $("#filterSupplier").val();     // selected supplier
 
         $.ajax({
-            url: "../ajax/filter_products.php",        // unified endpoint
+            url: "../api/filter_products.php",        // unified endpoint
             method: "GET",
             data: {
                 q: query,
