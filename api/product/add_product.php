@@ -62,7 +62,7 @@ if ($isValid) {
         echo "OK";
         exit;
     } else {
-        echo "<p style='color:red;'>Error adding product: " . $conn->error . "</p>";
+        echo "Error adding product: " . $conn->error;
     }
 } else {
     echo "Name, SKU, category, and supplier are required!";
