@@ -1,71 +1,15 @@
 <?php
-include "../includes/auth_check.php";
 include "../includes/db.php";
 include "../includes/header.php";
 include "../includes/audit.php";
+include "../includes/auth_check.php";
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $name = trim($_POST["name"]);
-    $sku = trim($_POST["sku"]);
-    $quantity = intval($_POST["quantity"]);
-    $price = floatval($_POST["price"]);
-    $category_id = intval($_POST["category"]);
-    $supplier_id = intval($_POST["supplier"]);
-    $critical = intval($_POST["critical"]);
-
-    if (!empty($name) && !empty($sku) && $category_id && $supplier_id) {
-
-        $stmt = $conn->prepare("
-            INSERT INTO products (name, sku, quantity, price, category_id, supplier_id, critical_level)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-        $stmt->bind_param("ssidiii", $name, $sku, $quantity, $price, $category_id, $supplier_id, $critical);
-
-        if ($stmt->execute()) {
-            $product_id = $stmt->insert_id;
-
-            $zero = 0;
-            $change_amount = $quantity; // initial movement is +quantity
-            $old_quantity = 0;
-            $new_quantity = $quantity;
-
-            $mov = $conn->prepare("
-                        INSERT INTO stock_movements 
-                        (product_id, change_amount, old_quantity, new_quantity, reason, created_by)
-                        VALUES (?, ?, ?, ?, 'add', ?)
-                        ");
-
-            $mov->bind_param(
-                "iiiii",
-                $product_id,
-                $change_amount,
-                $old_quantity,
-                $new_quantity,
-                $_SESSION['user_id']
-            );
-
-            $mov->execute();
-
-            // Log audit
-            log_action($conn, $_SESSION['user_id'], 'add', 'products', $product_id, "Added product $name");
-
-            echo "<script>alert('Product added successfully!'); 
-                window.location='list.php';</script>";
-            exit;
-        } else {
-            echo "<p style='color:red;'>Error adding product: " . $conn->error . "</p>";
-        }
-    } else {
-        echo "<p style='color:red;'>Name, SKU, category, and supplier are required!</p>";
-    }
-}
 ?>
 
 <h2>Add Product</h2>
 
-<form method="post">
+<form id="addForm">
 
     <label>Name:</label><br>
     <input type="text" name="name" required><br><br>
@@ -80,14 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="number" step="0.01" name="price" value="0.00"><br><br>
 
     <label>Category:</label><br>
-    <select name="category" required>
+    <select id="categorySelect" name="category" required>
         <option value="">-- Select --</option>
-        <?php
-        $cats = $conn->query("SELECT * FROM categories");
-        while ($c = $cats->fetch_assoc()) {
-            echo "<option value='{$c['id']}'>{$c['name']}</option>";
-        }
-        ?>
     </select><br><br>
 
     <label>Supplier:</label><br>
@@ -106,5 +44,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button type="submit">Add Product</button>
 </form>
+
+<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+    $("#addForm").on("submit", function(e) {
+        e.preventDefault();
+
+        $.post("../api/product/add_product.php", $(this).serialize(), function(response) {
+
+            if (response.trim() === "OK") {
+                $("#msg").css("color", "green").text("Product added successfully!");
+
+                setTimeout(() => {
+                    window.location.href = "list.php";
+                }, 800);
+            } else {
+                $("#msg").css("color", "red").text("Error: " + response);
+            }
+        });
+    });
+</script>
 
 <?php include "../includes/footer.php"; ?>

@@ -30,4 +30,6 @@ $(document).ready(function () {
 
     // Initial load
     loadProducts();
+
+    $("#categorySelect").load("/inventory/api/categories/get_categories.php");
 });
