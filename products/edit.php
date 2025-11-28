@@ -1,6 +1,7 @@
 <?php
 include "../includes/db.php";
 include "../includes/header.php";
+include "../includes/auth_check.php";
 
 
 $id = $_GET["id"];
