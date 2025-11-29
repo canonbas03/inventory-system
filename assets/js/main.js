@@ -1,19 +1,19 @@
 $(document).ready(function () {
     // === DASHBOARD === \\
     // LOAD TOTAL COUNTS
+    loadCounts();
+    function loadCounts() {
     $.get("api/dashboard/get_counts.php", function(response) {
-
         let parts = response.split("|||");
-
         $("#total-products").text(parts[0]);
         $("#total-categories").text(parts[1]);
         $("#total-suppliers").text(parts[2]);
     });
+}
 
-
-    // LOAD LOW STOCK SECTION
+loadLowStock();
+function loadLowStock() {
     $.get("api/products/get_low_stock_products.php", function(response) {
-
         let parts = response.split("|||");
         let count = parts[0].trim();
         let html = parts[1];
@@ -21,6 +21,7 @@ $(document).ready(function () {
         $("#low-stock-count").text(count);
         $("#low-stock-table").html(html);
     });
+}
 
 
 
@@ -45,6 +46,8 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $("#product-table tbody").html(data);
+                loadCounts();
+                loadLowStock();
             }
         });
     }
@@ -72,6 +75,8 @@ $(document).ready(function () {
 
     $.post("/inventory/api/products/delete_product.php", { id: id }, function (response) {
         loadProducts();
+        loadCounts();
+        loadLowStock();
          });
     });
 
