@@ -64,7 +64,7 @@ while ($row = $result->fetch_assoc()) {
         <td>{$row['price']}</td>
         <td>
             <a href='#' class='edit-btn' data-id ={$row['id']}>Edit</a> |
-            <a href='#' class='delete-btn' data-id={$row['id']}>Delete</a>
+            <a href='#' class='delete-product-btn' data-id={$row['id']}>Delete</a>
         </td>
     </tr>";
 }

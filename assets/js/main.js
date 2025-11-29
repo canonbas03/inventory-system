@@ -37,7 +37,8 @@ $(document).ready(function () {
     $("#category-select").load("/inventory/api/categories/get_categories.php");
     $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
 
-    // PRODUCTS
+
+    // === PRODUCTS === \\
 
     // Edit products
      $(document).on("click", ".edit-btn", function (e) {
@@ -49,7 +50,7 @@ $(document).ready(function () {
     });
 
     // Delete products
-     $(document).on("click", ".delete-btn", function (e) {
+     $(document).on("click", ".delete-product-btn", function (e) {
     e.preventDefault();
 
     if (!confirm("Delete this product?")) return;
@@ -59,5 +60,29 @@ $(document).ready(function () {
     $.post("/inventory/api/products/delete_product.php", { id: id }, function (response) {
         loadProducts();
          });
+    });
+
+
+    // === SUPPLIERS === \\
+     function loadSuppliers() {
+        $.ajax({
+            url: "/inventory/api/suppliers/filter_suppliers.php", // you need a PHP endpoint that outputs the supplier table rows
+            method: "GET",
+            success: function (data) {
+                $("#supplier-table table").html(
+                    "<tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>" + data
+                );
+            }
+        });
+    }
+    // Delete supplier
+     $(document).on("click", ".delete-supplier-btn", function (e) {
+    e.preventDefault();
+
+    if (!confirm("Delete this supplier?")) return;
+
+    let id = $(this).data("id");
+
+    $.post("/inventory/api/suppliers/delete_supplier.php", { id: id }, loadSuppliers);
     });
 });
