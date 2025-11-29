@@ -39,6 +39,15 @@ $(document).ready(function () {
 
     // PRODUCTS
 
+    // Edit products
+     $(document).on("click", ".edit-btn", function (e) {
+    e.preventDefault();
+
+    let id = $(this).data("id");
+
+    window.location.href = "../products/edit.php?id=" + id;
+    });
+
     // Delete products
      $(document).on("click", ".delete-btn", function (e) {
     e.preventDefault();
