@@ -118,6 +118,15 @@ $(document).ready(function () {
     // Search
         $("#search-category").on("keyup", loadCategories);
 
+    // Edit category
+        $(document).on("click", ".edit-category-btn", function (e) {
+        e.preventDefault();
+
+        let id = $(this).data("id");
+
+        window.location.href = "../categories/edit.php?id=" + id;
+    });
+
     // Delete category
     $(document).on("click", ".delete-category-btn", function (e) {
     e.preventDefault();
