@@ -3,39 +3,43 @@ include "../includes/header.php";
 include "../includes/auth_check.php";
 ?>
 
-<h2>Add Product</h2>
+<div class="form-card">
+    <h2>Add Product</h2>
 
-<form id="add-product-form">
+    <form id="add-product-form">
 
-    <label>Name:</label><br>
-    <input type="text" name="name" required><br><br>
+        <label>Name:</label>
+        <input type="text" name="name" required>
 
-    <label>SKU (unique code):</label><br>
-    <input type="text" name="sku" required><br><br>
+        <label>SKU (unique code):</label>
+        <input type="text" name="sku" required>
 
-    <label>Quantity:</label><br>
-    <input type="number" name="quantity" value="0" min="0"><br><br>
+        <label>Quantity:</label>
+        <input type="number" name="quantity" value="0" min="0">
 
-    <label>Price:</label><br>
-    <input type="number" step="0.01" name="price" value="0.00"><br><br>
+        <label>Price:</label>
+        <input type="number" step="0.01" name="price" value="0.00">
 
-    <label>Category:</label><br>
-    <select id="category-select" name="category" required>
-        <option value="">-- Select --</option>
-    </select><br><br>
+        <label>Category:</label>
+        <select id="category-select" name="category" required>
+            <option value="">-- Select --</option>
+        </select>
 
-    <label>Supplier:</label><br>
-    <select id="supplier-select" name="supplier" required>
-        <option value="">-- Select --</option>
-    </select><br><br>
+        <label>Supplier:</label>
+        <select id="supplier-select" name="supplier" required>
+            <option value="">-- Select --</option>
+        </select>
 
-    <label>Critical Level:</label><br>
-    <input type="number" name="critical" value="0" min="0"><br><br>
+        <label>Critical Level:</label>
+        <input type="number" name="critical" value="0" min="0">
 
-    <button type="submit">Add Product</button>
-</form>
+        <button class="btn btn-primary" type="submit">Add Product</button>
 
-<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+    </form>
+
+    <div id="msg" class="form-msg"></div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
