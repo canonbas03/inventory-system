@@ -32,5 +32,5 @@ $(document).ready(function () {
     loadProducts();
 
     $("#category-select").load("/inventory/api/categories/get_categories.php");
-    $("#supplier-select").load("/inventory/api/categories/get_supliers.php");
+    $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
 });
