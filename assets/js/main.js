@@ -1,14 +1,21 @@
 $(document).ready(function () {
 
-   
-
+    // Trigger on search input
+    
+    
+    $("#category-select").load("/inventory/api/categories/get_categories.php");
+    $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
+    
+    
+    // === PRODUCTS === \\
+    loadProducts();
     function loadProducts() {
         var query = $("#search").val();                // search text
         var category = $("#filterCategory").val();     // selected category
         var supplier = $("#filterSupplier").val();     // selected supplier
 
         $.ajax({
-            url: "../api/filter_products.php",        // unified endpoint
+            url: "../api/products/filter_products.php",        // unified endpoint
             method: "GET",
             data: {
                 q: query,
@@ -25,20 +32,9 @@ $(document).ready(function () {
         });
     }
 
-    // Trigger on search input
+    // Search
     $("#search").on("keyup", loadProducts);
-
-    // Trigger on dropdown change
     $("#filterCategory, #filterSupplier").on("change", loadProducts);
-
-    // Initial load
-    loadProducts();
-
-    $("#category-select").load("/inventory/api/categories/get_categories.php");
-    $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
-
-
-    // === PRODUCTS === \\
 
     // Edit products
      $(document).on("click", ".edit-btn", function (e) {
@@ -64,17 +60,24 @@ $(document).ready(function () {
 
 
     // === SUPPLIERS === \\
+    
+     loadSuppliers();
      function loadSuppliers() {
-        $.ajax({
-            url: "/inventory/api/suppliers/filter_suppliers.php", // you need a PHP endpoint that outputs the supplier table rows
-            method: "GET",
-            success: function (data) {
-                $("#supplier-table table").html(
-                    "<tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>" + data
-                );
-            }
-        });
+             $.ajax({
+                    url: "../api/suppliers/filter_suppliers.php",
+                    method: "GET",
+                    data: {
+                        q: $("#searchSupplier").val()
+                    },
+                    success: function(data) {
+                        $("#supplier-table tbody").html(data); // update tbody only
+                    }
+                 });
+                
     }
+
+    // Search
+        $("#searchSupplier").on("keyup", loadSuppliers);
     // Delete supplier
      $(document).on("click", ".delete-supplier-btn", function (e) {
     e.preventDefault();

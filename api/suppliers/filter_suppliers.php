@@ -33,7 +33,6 @@ while ($row = $result->fetch_assoc()) {
         <td>" . htmlspecialchars($row['email']) . "</td>
         <td>
             <a href='edit.php?id={$row['id']}'>Edit</a> |
-            <a href='delete.php?id={$row['id']}' onclick='return confirm(\"Delete this supplier?\")'>Delete</a>
             <a href='#' class='delete-supplier-btn' data-id={$row['id']}>Delete</a>
 
         </td>

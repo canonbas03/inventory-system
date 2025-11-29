@@ -1,5 +1,5 @@
 <?php
-include "../includes/db.php";
+include "../../includes/db.php";
 
 // Get filter values from GET parameters
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';

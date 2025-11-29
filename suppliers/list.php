@@ -1,7 +1,7 @@
 <?php
 include "../includes/auth_check.php";
 include "../includes/db.php";
-include "../includes/header.php";  // includes CSS, nav, etc.
+include "../includes/header.php";
 ?>
 
 <h2>Suppliers</h2>
@@ -10,7 +10,7 @@ include "../includes/header.php";  // includes CSS, nav, etc.
 <input type="text" id="searchSupplier" placeholder="Search suppliers by name">
 
 <div id="supplier-table">
-    <table class="table" border="1" cellpadding="10"> <!-- you can add your custom class -->
+    <table class="table" border="1" cellpadding="10">
         <thead>
             <tr>
                 <th>ID</th>
@@ -21,31 +21,9 @@ include "../includes/header.php";  // includes CSS, nav, etc.
             </tr>
         </thead>
         <tbody>
-            <!-- rows will be loaded by AJAX -->
+            <!-- AJAX -->
         </tbody>
     </table>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        function loadSuppliers() {
-            $.ajax({
-                url: "../api/suppliers/filter_suppliers.php",
-                method: "GET",
-                data: {
-                    q: $("#searchSupplier").val()
-                },
-                success: function(data) {
-                    $("#supplier-table tbody").html(data); // update tbody only
-                }
-            });
-        }
-
-        $("#searchSupplier").on("keyup", loadSuppliers);
-
-        loadSuppliers(); // initial load
-    });
-</script>
 
 <?php include "../includes/footer.php"; ?>
