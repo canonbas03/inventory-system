@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 
 
-    // LOAD LOW STOCK SECTION (already done)
+    // LOAD LOW STOCK SECTION
     $.get("api/products/get_low_stock_products.php", function(response) {
 
         let parts = response.split("|||");
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     let id = $(this).data("id");
 
-    window.location.href = "../products/edit.php?id=" + id;
+    window.location.href = "/inventory/products/edit.php?id=" + id;
     });
 
     // Delete products

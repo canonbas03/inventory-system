@@ -14,7 +14,6 @@ $sql = "
 $result = $conn->query($sql);
 $count = $result->num_rows;
 
-// Start output with count
 echo $count . "|||";
 
 if ($count > 0) {
@@ -48,8 +47,8 @@ if ($count > 0) {
                 <td>$cat</td>
                 <td>$sup</td>
                 <td>
-                    <a href='#' class='edit-product-btn' data-id='$id'>Edit</a> |
-                    <a href='#' class='delete-product-btn' data-id='$id'>Delete</a>
+                    <a href='#' class='edit-product-btn' data-id ={$row['id']}>Edit</a> |
+                    <a href='#' class='delete-product-btn' data-id={$row['id']}>Delete</a>
                 </td>
             </tr>
         ";
