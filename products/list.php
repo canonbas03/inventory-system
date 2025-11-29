@@ -54,36 +54,4 @@ include "../includes/header.php";
     </table>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-
-        function loadProducts() {
-            $.ajax({
-                url: "../api/filter_products.php",
-                method: "GET",
-                data: {
-                    q: $("#search").val(),
-                    category: $("#filterCategory").val(),
-                    supplier: $("#filterSupplier").val()
-                },
-                success: function(data) {
-                    $("#product-table table").html(
-                        "<tr><th>ID</th><th>Name</th><th>SKU</th><th>Qty</th><th>Category</th><th>Supplier</th><th>Price</th><th>Actions</th></tr>" + data
-                    );
-                }
-            });
-        }
-
-        // Trigger on search keyup
-        $("#search").on("keyup", loadProducts);
-
-        // Trigger on dropdown change
-        $("#filterCategory, #filterSupplier").on("change", loadProducts);
-
-        // Initial load
-        loadProducts();
-    });
-</script>
-
 <?php include "../includes/footer.php"; ?>
