@@ -66,3 +66,64 @@ table {
 .card-suppliers { background: #fff0f0; }
 .card-lowstock { background: #fffbe0; color: red; }
 
+/* FOOTER */
+footer {
+    text-align: center;       /* center the text */
+    padding: 15px 0;          /* vertical spacing */
+    background-color: #f0f0f0; /* optional: light background */
+    color: #333;              /* optional: text color */
+    font-size: 14px;          /* optional: font size */
+    position: relative;       /* keeps it in normal flow */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;  /* pushes footer to bottom */
+}
+
+/* BUTTONS */
+/* Base button style - default is blue */
+a.button-link {
+    display: inline-block;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s;
+    cursor: pointer;
+    background-color: #007bff; /* default blue */
+}
+
+a.button-link:hover {
+    background-color: #0056b3;
+}
+
+/* Edit button (green) */
+a.button-link.edit {
+    background-color: #28a745;
+}
+
+a.button-link.edit:hover {
+    background-color: #1e7e34;
+}
+
+/* Delete button (red) */
+a.button-link.delete {
+    background-color: #dc3545;
+}
+
+a.button-link.delete:hover {
+    background-color: #a71d2a;
+}
+

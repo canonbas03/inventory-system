@@ -12,7 +12,7 @@ include "../includes/header.php";
     <button type="submit">Add Category</button>
 </form>
 
-<br><a href="list.php">Back to list</a>
+<br><a class='button-link' href="list.php">Back to list</a>
 
 <div id="msg" style="margin-top:10px; font-weight:bold;"></div>
 

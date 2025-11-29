@@ -5,7 +5,7 @@ include "../includes/header.php";
 ?>
 
 <h2>Products</h2>
-<a href="add.php">Add Product</a><br><br>
+<a class='button-link' href="add.php">Add Product</a><br><br>
 
 <form id="filterForm">
     <label>Search:</label>
@@ -34,8 +34,8 @@ include "../includes/header.php";
     </select>
 </form>
 
-<a href="export_products.php" class="btn">Export CSV</a>
-<a href="export_products.php?category=2&supplier=5" class="btn">Export Filtered CSV</a>
+<a class='button-link' href="export_products.php" class="btn">Export CSV</a>
+<a class='button-link' href="export_products.php?category=2&supplier=5" class="btn">Export Filtered CSV</a>
 
 
 <div id="product-table">

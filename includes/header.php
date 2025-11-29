@@ -36,7 +36,7 @@ $basePath = "/inventory"; // adjust if project folder changes
                     <?php endif; ?>
                 </li>
             <?php else: ?>
-                <li style="float:right;"><a href="<?= $basePath ?>/auth/login.php">Login</a></li>
+                <li style="float:right;"><a class='button-link' href="<?= $basePath ?>/auth/login.php">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>

@@ -1,6 +1,6 @@
 </div>
 <footer>
-    <p>Inventory System © <?php echo date("Y"); ?></p>
+    <p>Inventory System © <?php echo date("Y"); ?> Made by Salih-Dzhan Yonbash</p>
 </footer>
 </body>
 

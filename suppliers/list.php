@@ -5,7 +5,7 @@ include "../includes/header.php";
 ?>
 
 <h2>Suppliers</h2>
-<a href="add.php">Add Supplier</a><br><br>
+<a class='button-link' href="add.php">Add Supplier</a><br><br>
 
 <input type="text" id="searchSupplier" placeholder="Search suppliers by name">
 

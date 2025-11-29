@@ -37,7 +37,7 @@ if (!$supplier) die("Supplier not found");
 <div id="msg" style="margin-top:10px; font-weight:bold;"></div>
 
 
-<br><a href="list.php">Back to list</a>
+<br><a class='button-link' href="list.php">Back to list</a>
 
 <script>
     $("#edit-supplier-form").on("submit", function(e) {

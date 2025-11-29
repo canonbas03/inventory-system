@@ -6,7 +6,7 @@ include "../includes/header.php";
 ?>
 
 <h2>Categories</h2>
-<a href="add.php">Add Category</a><br><br>
+<a class='button-link' href="add.php">Add Category</a><br><br>
 
 <input id="search-category" type="text" placeholder="Search categories by name">
 
