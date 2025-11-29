@@ -32,7 +32,7 @@ while ($row = $result->fetch_assoc()) {
         <td>" . htmlspecialchars($row['phone']) . "</td>
         <td>" . htmlspecialchars($row['email']) . "</td>
         <td>
-            <a href='edit.php?id={$row['id']}'>Edit</a> |
+            <a href='#' class='edit-supplier-btn' data-id ={$row['id']}>Edit</a> |
             <a href='#' class='delete-supplier-btn' data-id={$row['id']}>Delete</a>
 
         </td>

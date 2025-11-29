@@ -1,8 +1,5 @@
 $(document).ready(function () {
 
-    // Trigger on search input
-    
-    
     $("#category-select").load("/inventory/api/categories/get_categories.php");
     $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
     
@@ -37,7 +34,7 @@ $(document).ready(function () {
     $("#filterCategory, #filterSupplier").on("change", loadProducts);
 
     // Edit products
-     $(document).on("click", ".edit-btn", function (e) {
+     $(document).on("click", ".edit-product-btn", function (e) {
     e.preventDefault();
 
     let id = $(this).data("id");
@@ -76,16 +73,61 @@ $(document).ready(function () {
                 
     }
 
-    // Search
+    // Search supplier
         $("#searchSupplier").on("keyup", loadSuppliers);
+
+    // Edit supplier
+        $(document).on("click", ".edit-supplier-btn", function (e) {
+        e.preventDefault();
+
+        let id = $(this).data("id");
+
+        window.location.href = "../suppliers/edit.php?id=" + id;
+    });
+
     // Delete supplier
-     $(document).on("click", ".delete-supplier-btn", function (e) {
+        $(document).on("click", ".delete-supplier-btn", function (e) {
+        e.preventDefault();
+
+        if (!confirm("Delete this supplier?")) return;
+
+        let id = $(this).data("id");
+
+        $.post("/inventory/api/suppliers/delete_supplier.php", { id: id }, loadSuppliers);
+    });
+
+
+     // === CATAGORIES === \\
+
+     loadCategories(); 
+     function loadCategories() {
+            $.ajax({
+                url: "../api/categories/filter_categories.php",
+                method: "GET",
+                data: {
+                    q: $("#search-category").val()
+                },
+                success: function(data) {
+                    $("#category-table table").html(
+                        "<tr><th>ID</th><th>Name</th><th>Actions</th></tr>" + data
+                    );
+                }
+            });
+        }
+
+    // Search
+        $("#search-category").on("keyup", loadCategories);
+
+    // Delete category
+    $(document).on("click", ".delete-category-btn", function (e) {
     e.preventDefault();
 
-    if (!confirm("Delete this supplier?")) return;
+    if (!confirm("Delete this category?")) return;
 
     let id = $(this).data("id");
 
-    $.post("/inventory/api/suppliers/delete_supplier.php", { id: id }, loadSuppliers);
-    });
+    $.post("/inventory/api/categories/delete_category.php", { id: id }, loadCategories);
+
+
+});
 });

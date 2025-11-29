@@ -8,7 +8,7 @@ include "../includes/header.php";
 <h2>Categories</h2>
 <a href="add.php">Add Category</a><br><br>
 
-<input type="text" id="searchCategory" placeholder="Search categories by name">
+<input id="search-category" type="text" placeholder="Search categories by name">
 
 <div id="category-table">
     <table border="1" cellpadding="10">
@@ -17,32 +17,8 @@ include "../includes/header.php";
             <th>Name</th>
             <th>Actions</th>
         </tr>
-        <!-- rows will be loaded by AJAX -->
+        <!-- AJAX -->
     </table>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        function loadCategories() {
-            $.ajax({
-                url: "../api/filter_categories.php",
-                method: "GET",
-                data: {
-                    q: $("#searchCategory").val()
-                },
-                success: function(data) {
-                    $("#category-table table").html(
-                        "<tr><th>ID</th><th>Name</th><th>Actions</th></tr>" + data
-                    );
-                }
-            });
-        }
-
-        $("#searchCategory").on("keyup", loadCategories);
-
-        loadCategories(); // initial load
-    });
-</script>
 
 <?php include "../includes/footer.php"; ?>
