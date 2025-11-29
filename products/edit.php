@@ -4,12 +4,20 @@ include "../includes/header.php";
 include "../includes/auth_check.php";
 
 
-$id = $_GET["id"];
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("Invalid product ID");
+}
+
+$id = intval($_GET['id']);
+
 $sql = "SELECT * FROM products WHERE id = ?";
+
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $product = $stmt->get_result()->fetch_assoc();
+
+if (!$product) die("Product not found");
 ?>
 
 <h1>Edit Product</h1>
@@ -18,13 +26,13 @@ $product = $stmt->get_result()->fetch_assoc();
     <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
     <label>Name:</label>
-    <input type="text" name="name" value="<?= $product['name'] ?>">
+    <input type="text" name="name" value="<?= $product['name'] ?>" required>
 
     <label>Price:</label>
-    <input type="number" name="price" value="<?= $product['price'] ?>" step="0.01">
+    <input type="number" name="price" value="<?= $product['price'] ?>" step="0.01" required>
 
     <label>Quantity:</label>
-    <input type="number" name="quantity" value="<?= $product['quantity'] ?>">
+    <input type="number" name="quantity" value="<?= $product['quantity'] ?>" min=0>
 
     <button type="submit">Save</button>
 </form>
