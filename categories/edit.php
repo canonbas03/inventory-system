@@ -15,20 +15,23 @@ $category = $stmt->get_result()->fetch_assoc();
 if (!$category) die("Category not found");
 ?>
 
-<h2>Edit Category</h2>
+<div class="form-card">
+    <h2>Edit Category</h2>
 
-<form id="edit-category-form">
-    <input type="hidden" name="id" value="<?= $category['id'] ?>">
+    <form id="edit-category-form">
+        <input type="hidden" name="id" value="<?= $category['id'] ?>">
 
-    <label>Name:</label><br>
-    <input type="text" name="name" value="<?= htmlspecialchars($category['name']) ?>" required><br><br>
+        <label>Name:</label>
+        <input type="text" name="name" value="<?= htmlspecialchars($category['name']) ?>" required>
 
-    <button type="submit">Save Changes</button>
-</form>
+        <button class="btn btn-primary" type="submit">Save Changes</button>
+    </form>
 
-<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+    <a class="btn btn-secondary" href="list.php">Back to list</a>
 
-<br><a class='button-link' href="list.php">Back to list</a>
+    <div id="msg" class="form-msg"></div>
+</div>
+
 
 <script>
     $("#edit-category-form").on("submit", function(e) {

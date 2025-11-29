@@ -5,22 +5,27 @@ include "../includes/header.php";
 
 <h2>Add Supplier</h2>
 
-<form id="add-supplier-form">
-    <label>Name:</label><br>
-    <input type="text" name="name" required><br><br>
+<div class="form-card">
+    <h2>Add Supplier</h2>
 
-    <label>Phone:</label><br>
-    <input type="text" name="phone" required><br><br>
+    <form id="add-supplier-form">
+        <label>Name:</label>
+        <input type="text" name="name" required>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+        <label>Phone:</label>
+        <input type="text" name="phone" required>
 
-    <button type="submit">Add Supplier</button>
-</form>
+        <label>Email:</label>
+        <input type="email" name="email" required>
 
-<br><a class='button-link' href="list.php">Back to list</a>
+        <button class="btn btn-primary" type="submit">Add Supplier</button>
+    </form>
 
-<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+    <a class="btn btn-secondary" href="list.php">Back to list</a>
+
+    <div id="msg" class="form-msg"></div>
+</div>
+
 
 <script>
     $("#add-supplier-form").on("submit", function(e) {

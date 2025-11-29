@@ -17,27 +17,29 @@ $supplier = $stmt->get_result()->fetch_assoc();
 if (!$supplier) die("Supplier not found");
 ?>
 
-<h2>Edit Supplier</h2>
+<div class="form-card">
+    <h2>Edit Supplier</h2>
 
-<form id="edit-supplier-form">
-    <input type="hidden" name="id" value="<?= $supplier['id'] ?>">
+    <form id="edit-supplier-form">
+        <input type="hidden" name="id" value="<?= $supplier['id'] ?>">
 
-    <label>Name:</label><br>
-    <input type="text" name="name" value="<?= htmlspecialchars($supplier['name']) ?>" required><br><br>
+        <label>Name:</label>
+        <input type="text" name="name" value="<?= htmlspecialchars($supplier['name']) ?>" required>
 
-    <label>Phone:</label><br>
-    <input type="text" name="phone" value="<?= htmlspecialchars($supplier['phone']) ?>" required><br><br>
+        <label>Phone:</label>
+        <input type="text" name="phone" value="<?= htmlspecialchars($supplier['phone']) ?>" required>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" value="<?= htmlspecialchars($supplier['email']) ?>" required><br><br>
+        <label>Email:</label>
+        <input type="email" name="email" value="<?= htmlspecialchars($supplier['email']) ?>" required>
 
-    <button type="submit">Save Changes</button>
-</form>
+        <button class="btn btn-primary" type="submit">Save Changes</button>
+    </form>
 
-<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+    <a class="btn btn-secondary" href="list.php">Back to list</a>
 
+    <div id="msg" class="form-msg"></div>
+</div>
 
-<br><a class='button-link' href="list.php">Back to list</a>
 
 <script>
     $("#edit-supplier-form").on("submit", function(e) {

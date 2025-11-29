@@ -3,18 +3,20 @@ include "../includes/auth_check.php";
 include "../includes/header.php";
 ?>
 
-<h2>Add Category</h2>
+<div class="form-card">
+    <h2>Add Category</h2>
 
-<form id="add-category-form">
-    <label>Name:</label><br>
-    <input type="text" name="name" required><br><br>
+    <form id="add-category-form">
+        <label>Name:</label>
+        <input type="text" name="name" required>
 
-    <button type="submit">Add Category</button>
-</form>
+        <button class="btn btn-primary" type="submit">Add Category</button>
+    </form>
 
-<br><a class='button-link' href="list.php">Back to list</a>
+    <a class="btn btn-secondary" href="list.php">Back to list</a>
 
-<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+    <div id="msg" class="form-msg"></div>
+</div>
 
 <script>
     $("#add-category-form").on("submit", function(e) {
