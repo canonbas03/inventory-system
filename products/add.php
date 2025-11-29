@@ -53,7 +53,7 @@ include "../includes/auth_check.php";
     $("#addForm").on("submit", function(e) {
         e.preventDefault();
 
-        $.post("../api/product/add_product.php", $(this).serialize(), function(response) {
+        $.post("../api/products/add_product.php", $(this).serialize(), function(response) {
 
             if (response.trim() === "OK") {
                 $("#msg").css("color", "green").text("Product added successfully!");

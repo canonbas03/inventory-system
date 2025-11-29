@@ -37,7 +37,7 @@ $product = $stmt->get_result()->fetch_assoc();
     $("#editForm").on("submit", function(e) {
         e.preventDefault();
 
-        $.post("../api/product/edit_product.php", $(this).serialize(), function(response) {
+        $.post("../api/products/edit_product.php", $(this).serialize(), function(response) {
 
             if (response.trim() === "OK") {
                 $("#msg").css("color", "green").text("Product updated successfully!");
