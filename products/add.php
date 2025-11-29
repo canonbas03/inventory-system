@@ -24,19 +24,15 @@ include "../includes/auth_check.php";
     <input type="number" step="0.01" name="price" value="0.00"><br><br>
 
     <label>Category:</label><br>
-    <select id="categorySelect" name="category" required>
+    <select id="category-select" name="category" required>
         <option value="">-- Select --</option>
     </select><br><br>
 
     <label>Supplier:</label><br>
-    <select name="supplier" required>
+    <select id="supplier-select" name="supplier" required>
         <option value="">-- Select --</option>
-        <?php
-        $sups = $conn->query("SELECT * FROM suppliers");
-        while ($s = $sups->fetch_assoc()) {
-            echo "<option value='{$s['id']}'>{$s['name']}</option>";
-        }
-        ?>
+
+        <!-- add id -->
     </select><br><br>
 
     <label>Critical Level:</label><br>

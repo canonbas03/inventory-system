@@ -31,5 +31,6 @@ $(document).ready(function () {
     // Initial load
     loadProducts();
 
-    $("#categorySelect").load("/inventory/api/categories/get_categories.php");
+    $("#category-select").load("/inventory/api/categories/get_categories.php");
+    $("#supplier-select").load("/inventory/api/categories/get_supliers.php");
 });

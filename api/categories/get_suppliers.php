@@ -5,7 +5,7 @@ if (!$conn) {
     die("DB connection failed");
 }
 
-$sql = "SELECT * FROM categories ORDER BY name";
+$sql = "SELECT * FROM suppliers ORDER BY name";
 $result = $conn->query($sql);
 
 if (!$result) {
