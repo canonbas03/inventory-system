@@ -11,6 +11,11 @@ nav ul {
     padding: 10px;
 }
 
+body, nav, ul {
+    margin: 0;
+    padding: 0;
+}
+
 nav ul li {
     margin-right: 20px;
 }
@@ -264,3 +269,35 @@ a.button-link.delete:hover {
     font-weight: bold;
     text-align: center;
 }
+
+
+/* WELCOME MESSAGE */
+/* Align user info to the right */
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* distributes left menu and right info */
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li.user-info {
+    margin-left: auto; /* pushes it to the right */
+    font-weight: normal;
+    color: #ffffff; /* lighter, readable color */
+    /* font-size: 0.95rem; */
+}
+
+nav ul li.user-info a {
+    color: #007bff; /* link color */
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+nav ul li.user-info a:hover {
+    text-decoration: underline;
+}
+
+

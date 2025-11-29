@@ -3,7 +3,7 @@ $(document).ready(function () {
     // LOAD TOTAL COUNTS
     loadCounts();
     function loadCounts() {
-    $.get("api/dashboard/get_counts.php", function(response) {
+    $.get("/inventory/api/dashboard/get_counts.php", function(response) {
         let parts = response.split("|||");
         $("#total-products").text(parts[0]);
         $("#total-categories").text(parts[1]);
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 loadLowStock();
 function loadLowStock() {
-    $.get("api/products/get_low_stock_products.php", function(response) {
+    $.get("/inventory/api/products/get_low_stock_products.php", function(response) {
         let parts = response.split("|||");
         let count = parts[0].trim();
         let html = parts[1];
@@ -37,7 +37,7 @@ function loadLowStock() {
         var supplier = $("#filterSupplier").val();     // selected supplier
 
         $.ajax({
-            url: "../api/products/filter_products.php",        // unified endpoint
+            url: "/inventory/api/products/filter_products.php",        // unified endpoint
             method: "GET",
             data: {
                 q: query,
@@ -86,7 +86,7 @@ function loadLowStock() {
      loadSuppliers();
      function loadSuppliers() {
              $.ajax({
-                    url: "../api/suppliers/filter_suppliers.php",
+                    url: "/inventory/api/suppliers/filter_suppliers.php",
                     method: "GET",
                     data: {
                         q: $("#searchSupplier").val()
@@ -127,7 +127,7 @@ function loadLowStock() {
      loadCategories(); 
      function loadCategories() {
             $.ajax({
-                url: "../api/categories/filter_categories.php",
+                url: "/inventory/api/categories/filter_categories.php",
                 method: "GET",
                 data: {
                     q: $("#search-category").val()

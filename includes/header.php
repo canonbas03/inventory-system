@@ -25,18 +25,18 @@ $basePath = "/inventory"; // adjust if project folder changes
             <li><a href="<?= $basePath ?>/suppliers/list.php">Suppliers</a></li>
 
             <?php if (isset($_SESSION['username'])): ?>
-                <li style="float:right;">
+                <li class="user-info">
                     Welcome, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong> |
                     <a href="<?= $basePath ?>/auth/logout.php">Logout</a>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
                         | <a href="<?= $basePath ?>/auth/register.php">Register User</a>
                         | <a href="<?= $basePath ?>/audit/list.php">Logs</a>
-
                     <?php endif; ?>
                 </li>
             <?php else: ?>
-                <li style="float:right;"><a class='button-link' href="<?= $basePath ?>/auth/login.php">Login</a></li>
+                <li class="user-info"><a class='button-link' href="<?= $basePath ?>/auth/login.php">Login</a></li>
             <?php endif; ?>
+
         </ul>
     </nav>
 
