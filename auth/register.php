@@ -43,22 +43,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Register New User</h2>
-<?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
-<?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
+<link rel="stylesheet" href="/inventory/assets/css/style.css">
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Register</h2>
 
-<form method="post">
-    <label>Username:</label><br>
-    <input type="text" name="username" required><br><br>
+        <?php if ($error): ?>
+            <p class="error-msg"><?= $error ?></p>
+        <?php endif; ?>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+        <?php if ($success): ?>
+            <p class="success-msg"><?= $success ?></p>
+        <?php endif; ?>
 
-    <label>Role:</label><br>
-    <select name="role">
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-    </select><br><br>
+        <form method="post">
+            <label>Username</label>
+            <input type="text" name="username" required>
 
-    <button type="submit">Create User</button>
-</form>
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Role</label>
+            <select name="role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Create User</button>
+        </form>
+    </div>
+
+</div>

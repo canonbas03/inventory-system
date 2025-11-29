@@ -128,21 +128,19 @@ a.button-link.delete:hover {
 }
 
 /* AUTHENTICATION */
-/* Fullscreen background for login/register pages ONLY */
 .auth-wrapper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #e5e5e5; /* light grey */
+    background: #92b9c4;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* stays above everything */
+    z-index: 1; 
 }
 
-/* Center card */
 .auth-card {
     background: white;
     padding: 30px 35px;
