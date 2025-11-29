@@ -304,4 +304,48 @@ nav ul li.user-info a:hover {
     text-decoration: underline;
 }
 
+/* FILTER */
+/* Container for the filter form */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #f8f9fa; /* light grey background */
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Label styling */
+.filter-form label {
+    font-weight: bold;
+    margin-right: 5px;
+    flex: 0 0 auto;
+}
+
+/* Inputs and selects */
+.filter-form input[type="text"],
+.filter-form select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    flex: 1 1 180px; /* responsive width */
+    min-width: 150px;
+    font-size: 14px;
+}
+
+/* Placeholder text */
+.filter-form input::placeholder {
+    color: #888;
+}
+
+/* Focus effect */
+.filter-form input:focus,
+.filter-form select:focus {
+    outline: none;
+    border-color: #007bff; /* nice blue highlight */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
 

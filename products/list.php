@@ -7,7 +7,7 @@ include "../includes/header.php";
 <h2>Products</h2>
 <a class='button-link' href="add.php">Add Product</a><br><br>
 
-<form id="filter-form">
+<form id="filter-form" class="filter-form">
     <label>Search:</label>
     <input type="text" name="q" id="search" placeholder="Search by name, SKU, category, or supplier">
 

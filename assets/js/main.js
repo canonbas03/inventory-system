@@ -92,7 +92,7 @@ function loadLowStock() {
                     url: "/inventory/api/suppliers/filter_suppliers.php",
                     method: "GET",
                     data: {
-                        q: $("#searchSupplier").val()
+                        q: $("#search-supplier").val()
                     },
                     success: function(data) {
                         $("#supplier-table tbody").html(data); // update tbody only
@@ -102,7 +102,7 @@ function loadLowStock() {
     }
 
     // Search supplier
-        $("#searchSupplier").on("keyup", loadSuppliers);
+        $("#search-supplier").on("keyup", loadSuppliers);
 
     // Edit supplier
         $(document).on("click", ".edit-supplier-btn", function (e) {

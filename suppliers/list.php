@@ -7,7 +7,12 @@ include "../includes/header.php";
 <h2>Suppliers</h2>
 <a class='button-link' href="add.php">Add Supplier</a><br><br>
 
-<input type="text" id="searchSupplier" placeholder="Search suppliers by name">
+
+
+<form id="filter-supplier-form" class="filter-form">
+    <label>Search:</label>
+    <input type="text" id="search-supplier" placeholder="Search suppliers by name">
+</form>
 
 <div id="supplier-table">
     <table class="table" border="1" cellpadding="10">
