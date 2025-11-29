@@ -29,3 +29,40 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
+
+
+/* DASHBOARD */
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.dashboard-cards a {
+    text-decoration: none;
+    color: black;
+    flex: 1;
+}
+
+.dashboard-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dashboard-card h3 {
+    margin: 0 0 10px 0;
+}
+
+.dashboard-card p {
+    font-size: 24px;
+    margin: 0;
+}
+
+.card-products { background: #f0f8ff; }
+.card-categories { background: #f9f0ff; }
+.card-suppliers { background: #fff0f0; }
+.card-lowstock { background: #fffbe0; color: red; }
+
