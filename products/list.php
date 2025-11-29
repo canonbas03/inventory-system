@@ -40,17 +40,21 @@ include "../includes/header.php";
 
 <div id="product-table">
     <table border="1" cellpadding="10">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>SKU</th>
-            <th>Qty</th>
-            <th>Category</th>
-            <th>Supplier</th>
-            <th>Price</th>
-            <th>Actions</th>
-        </tr>
-        <!-- Rows will be loaded by AJAX -->
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Qty</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- AJAX -->
+        </tbody>
     </table>
 </div>
 
