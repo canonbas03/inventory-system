@@ -5,8 +5,6 @@ include "../includes/header.php";
 
 <h2>Add Supplier</h2>
 
-<!-- <!php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?> -->
-
 <form id="add-supplier-form">
     <label>Name:</label><br>
     <input type="text" name="name" required><br><br>

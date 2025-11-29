@@ -32,7 +32,7 @@ if (!$product) die("Product not found");
     <input type="number" name="price" value="<?= $product['price'] ?>" step="0.01" required>
 
     <label>Quantity:</label>
-    <input type="number" name="quantity" value="<?= $product['quantity'] ?>" min=0>
+    <input type="number" name="quantity" value="<?= $product['quantity'] ?>" min=0 required>
 
     <button type="submit">Save</button>
 </form>
