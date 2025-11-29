@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    $("#filter-category").load("/inventory/api/categories/get_categories.php");
+    $("#filter-supplier").load("/inventory/api/suppliers/get_suppliers.php");
     // === DASHBOARD === \\
     // LOAD TOTAL COUNTS
     loadCounts();
@@ -26,15 +29,15 @@ function loadLowStock() {
 
 
     $("#category-select").load("/inventory/api/categories/get_categories.php");
-    $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
+    $("#supplier-select").load("/inventory/api/suppliers/get_suppliers.php");
     
     
     // === PRODUCTS === \\
     loadProducts();
     function loadProducts() {
         var query = $("#search").val();                // search text
-        var category = $("#filterCategory").val();     // selected category
-        var supplier = $("#filterSupplier").val();     // selected supplier
+        var category = $("#filter-category").val();     // selected category
+        var supplier = $("#filter-supplier").val();     // selected supplier
 
         $.ajax({
             url: "/inventory/api/products/filter_products.php",        // unified endpoint
@@ -54,7 +57,7 @@ function loadLowStock() {
 
     // Search
     $("#search").on("keyup", loadProducts);
-    $("#filterCategory, #filterSupplier").on("change", loadProducts);
+    $("#filter-category, #filter-supplier").on("change", loadProducts);
 
     // Edit products
      $(document).on("click", ".edit-product-btn", function (e) {
