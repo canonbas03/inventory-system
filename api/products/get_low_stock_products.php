@@ -46,7 +46,7 @@ if ($count > 0) {
                 <td>$crit</td>
                 <td>$cat</td>
                 <td>$sup</td>
-                <td>
+                <td class='actions'>
                     <a href='#' class='edit-product-btn button-link edit' data-id ={$row['id']}>Edit</a> |
                     <a href='#' class='delete-product-btn button-link delete' data-id={$row['id']}>Delete</a>
                 </td>

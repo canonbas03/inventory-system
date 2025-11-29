@@ -35,6 +35,10 @@ table {
     width: 100%;
 }
 
+td.actions {
+    text-align: center;
+}
+
 
 /* DASHBOARD */
 .dashboard-cards {

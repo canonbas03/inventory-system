@@ -31,7 +31,7 @@ while ($row = $result->fetch_assoc()) {
         <td>" . htmlspecialchars($row['name']) . "</td>
         <td>" . htmlspecialchars($row['phone']) . "</td>
         <td>" . htmlspecialchars($row['email']) . "</td>
-        <td>
+        <td class='actions'>
             <a href='#' class='edit-supplier-btn button-link edit' data-id ={$row['id']}>Edit</a> |
             <a href='#' class='delete-supplier-btn button-link delete' data-id={$row['id']}>Delete</a>
 
