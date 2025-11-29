@@ -17,7 +17,6 @@ $basePath = "/inventory"; // adjust if project folder changes
 </head>
 
 <body>
-
     <nav>
         <ul>
             <li><a href="<?= $basePath ?>/index.php">Dashboard</a></li>

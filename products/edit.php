@@ -20,24 +20,28 @@ $product = $stmt->get_result()->fetch_assoc();
 if (!$product) die("Product not found");
 ?>
 
-<h1>Edit Product</h1>
+<div class="form-card">
+    <h2>Edit Product</h2>
 
-<form id="edit-product-form">
-    <input type="hidden" name="id" value="<?= $product['id'] ?>">
+    <form id="edit-product-form">
 
-    <label>Name:</label>
-    <input type="text" name="name" value="<?= $product['name'] ?>" required>
+        <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
-    <label>Price:</label>
-    <input type="number" name="price" value="<?= $product['price'] ?>" step="0.01" required>
+        <label>Name:</label>
+        <input type="text" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
 
-    <label>Quantity:</label>
-    <input type="number" name="quantity" value="<?= $product['quantity'] ?>" min=0 required>
+        <label>Price:</label>
+        <input type="number" name="price" value="<?= $product['price'] ?>" step="0.01" required>
 
-    <button type="submit">Save</button>
-</form>
+        <label>Quantity:</label>
+        <input type="number" name="quantity" value="<?= $product['quantity'] ?>" min="0" required>
 
-<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+        <button class="btn btn-primary" type="submit">Save Changes</button>
+    </form>
+
+    <div id="msg" class="form-msg"></div>
+</div>
+
 
 <script>
     $("#edit-product-form").on("submit", function(e) {
