@@ -29,15 +29,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<link rel="stylesheet" href="/inventory/assets/css/style.css">
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Login</h2>
 
-<h2>Login</h2>
-<?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
-<form method="post">
-    <label>Username:</label><br>
-    <input type="text" name="username" required><br><br>
+        <?php if ($error): ?>
+            <p class="error-msg"><?= $error ?></p>
+        <?php endif; ?>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+        <form method="post">
+            <label>Username</label>
+            <input type="text" name="username" required>
 
-    <button type="submit">Login</button>
-</form>
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</div>
