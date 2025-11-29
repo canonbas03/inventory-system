@@ -5,7 +5,7 @@ include "../includes/auth_check.php";
 
 <h2>Add Product</h2>
 
-<form id="addForm">
+<form id="add-product-form">
 
     <label>Name:</label><br>
     <input type="text" name="name" required><br><br>
@@ -40,7 +40,7 @@ include "../includes/auth_check.php";
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-    $("#addForm").on("submit", function(e) {
+    $("#add-product-form").on("submit", function(e) {
         e.preventDefault();
 
         $.post("../api/products/add_product.php", $(this).serialize(), function(response) {

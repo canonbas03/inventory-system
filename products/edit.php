@@ -14,7 +14,7 @@ $product = $stmt->get_result()->fetch_assoc();
 
 <h1>Edit Product</h1>
 
-<form id="editForm">
+<form id="edit-product-form">
     <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
     <label>Name:</label>
@@ -34,7 +34,7 @@ $product = $stmt->get_result()->fetch_assoc();
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-    $("#editForm").on("submit", function(e) {
+    $("#edit-product-form").on("submit", function(e) {
         e.preventDefault();
 
         $.post("../api/products/edit_product.php", $(this).serialize(), function(response) {
