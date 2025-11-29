@@ -64,7 +64,7 @@ while ($row = $result->fetch_assoc()) {
         <td>{$row['price']}</td>
         <td>
             <a href='edit.php?id={$row['id']}'>Edit</a> |
-            <a href='delete.php?id={$row['id']}' onclick='return confirm(\"Delete this product?\")'>Delete</a>
+            <a href='#' class='delete-btn' data-id={$row['id']}>Delete</a>
         </td>
     </tr>";
 }

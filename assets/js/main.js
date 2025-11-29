@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+   
+
     function loadProducts() {
         var query = $("#search").val();                // search text
         var category = $("#filterCategory").val();     // selected category
@@ -33,4 +36,19 @@ $(document).ready(function () {
 
     $("#category-select").load("/inventory/api/categories/get_categories.php");
     $("#supplier-select").load("/inventory/api/categories/get_suppliers.php");
+
+    // PRODUCTS
+
+    // Delete products
+     $(document).on("click", ".delete-btn", function (e) {
+    e.preventDefault();
+
+    if (!confirm("Delete this product?")) return;
+
+    let id = $(this).data("id");
+
+    $.post("/inventory/api/products/delete_product.php", { id: id }, function (response) {
+        loadProducts();
+         });
+    });
 });

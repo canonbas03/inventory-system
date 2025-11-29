@@ -1,10 +1,6 @@
 <?php
-include "../includes/db.php";
 include "../includes/header.php";
-include "../includes/audit.php";
 include "../includes/auth_check.php";
-
-
 ?>
 
 <h2>Add Product</h2>
@@ -31,8 +27,6 @@ include "../includes/auth_check.php";
     <label>Supplier:</label><br>
     <select id="supplier-select" name="supplier" required>
         <option value="">-- Select --</option>
-
-        <!-- add id -->
     </select><br><br>
 
     <label>Critical Level:</label><br>

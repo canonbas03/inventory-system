@@ -86,4 +86,21 @@ include "../includes/header.php";
     });
 </script>
 
+<!-- <script>
+    $(document).on("click", ".delete-btn", function(e) {
+        e.preventDefault();
+
+        let id = $(this).data("id");
+
+        if (!confirm("Delete this product?")) return;
+
+        $.post("../api/products/delete_delete.php", {
+            id: id
+        }, function(response) {
+            alert("Deleted!");
+            loadProducts();
+        });
+    });
+</script> -->
+
 <?php include "../includes/footer.php"; ?>
