@@ -34,6 +34,28 @@ if (!$supplier) die("Supplier not found");
     <button type="submit">Save Changes</button>
 </form>
 
+<div id="msg" style="margin-top:10px; font-weight:bold;"></div>
+
+
 <br><a href="list.php">Back to list</a>
+
+<script>
+    $("#edit-supplier-form").on("submit", function(e) {
+        e.preventDefault();
+
+        $.post("../api/suppliers/edit_supplier.php", $(this).serialize(), function(response) {
+
+            if (response.trim() === "OK") {
+                $("#msg").css("color", "green").text("Supplier updated successfully!");
+
+                setTimeout(() => {
+                    window.location.href = "list.php";
+                }, 800);
+            } else {
+                $("#msg").css("color", "red").text("Error: " + response);
+            }
+        });
+    });
+</script>
 
 <?php include "../includes/footer.php"; ?>

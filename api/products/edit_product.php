@@ -45,7 +45,6 @@ if ($isValid) {
 
     if ($stmt->execute()) {
 
-        $zero = 0;
         $change_amount = $new_quantity - $old_quantity;
 
         $mov = $conn->prepare("
@@ -62,13 +61,12 @@ if ($isValid) {
             $new_quantity,
             $_SESSION['user_id']
         );
-
-        $mov->execute();
-
-        // Log audit
-        $old_product_state = "[$old_name | $old_quantity | $old_price]";
-        $new_product_state = "[$new_name | $new_quantity | $new_price]";
-        log_action($conn, $_SESSION['user_id'], 'edit', 'products', $product_id, "Edited product From: $old_product_state To: $new_product_state");
+        if ($mov->execute()) {
+            // Log audit
+            $old_product_state = "[$old_name | $old_quantity | $old_price]";
+            $new_product_state = "[$new_name | $new_quantity | $new_price]";
+            log_action($conn, $_SESSION['user_id'], 'edit', 'products', $product_id, "Edited product From: $old_product_state To: $new_product_state");
+        }
 
         echo "OK";
         exit;

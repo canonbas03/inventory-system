@@ -39,8 +39,6 @@ if (!$product) die("Product not found");
 
 <div id="msg" style="margin-top:10px; font-weight:bold;"></div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
 <script>
     $("#edit-product-form").on("submit", function(e) {
         e.preventDefault();
