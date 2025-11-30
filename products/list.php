@@ -47,4 +47,22 @@ include "../includes/header.php";
     </table>
 </div>
 
+<div id="qty-modal" class="modal">
+    <div class="modal-content">
+        <h3 id="qty-modal-title">Adjust Quantity</h3>
+
+        <label>Amount:</label>
+        <input type="number" id="qty-amount" min="1" value="1">
+
+        <div class="modal-actions">
+            <button id="qty-increase" class="button-link edit">Increase</button>
+            <button id="qty-decrease" class="button-link delete">Decrease</button>
+        </div>
+        <br>
+        <button id="qty-close" class="button-link">Close</button>
+    </div>
+</div>
+
+
+
 <?php include "../includes/footer.php"; ?>

@@ -83,6 +83,56 @@ function loadLowStock() {
          });
     });
 
+    // Quick edit products
+   let selectedProductId = null;
+
+    // Open modal
+    $(document).on("click", ".qty-btn", function () {
+        selectedProductId = $(this).data("id");
+        $("#qty-modal").css("display", "flex");
+    });
+
+    // Close modal
+    $("#qty-close").on("click", function () {
+        $("#qty-modal").hide();
+        $("#qty-amount").val(1);
+    });
+
+    // Increase
+    $("#qty-increase").on("click", function () {
+        updateQuantity("increase");
+    });
+
+    // Decrease
+    $("#qty-decrease").on("click", function () {
+        updateQuantity("decrease");
+    });
+
+    function updateQuantity(type) {
+        let amount = $("#qty-amount").val();
+
+        $.post("/inventory/api/products/update_quantity.php",
+            {
+                id: selectedProductId,
+                amount: amount,
+                type: type
+            },
+            function (response) {
+                if (response.trim() === "OK") {
+                    // alert("Quantity updated!");
+                    $("#qty-modal").hide();
+                    $("#qty-amount").val(1);
+
+                    if (typeof loadProducts === "function") loadProducts();
+                    if (typeof loadDashboardCounts === "function") loadDashboardCounts();
+                } else {
+                    alert("Error: " + response);
+                }
+            }
+        );
+    }
+
+
 
     // === SUPPLIERS === \\
     
