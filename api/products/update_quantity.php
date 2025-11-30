@@ -27,7 +27,7 @@ if ($q->execute()) {
         'update_quantity',
         'products',
         $id,
-        ucfirst($type) . " quantity by $amount"
+        ucfirst($type) . "d quantity by $amount"
     );
     echo "OK";
 } else {

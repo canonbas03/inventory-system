@@ -8,7 +8,6 @@ $supplier = isset($_GET['supplier']) && $_GET['supplier'] !== '' ? intval($_GET[
 
 $timestamp = date('Ymd_His');
 
-
 header('Content-Type: text/csv');
 header("Content-Disposition: attachment; filename=\"products_{$timestamp}.csv\"");
 

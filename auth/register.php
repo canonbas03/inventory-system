@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Create User</button>
         </form>
+        <a class="btn btn-secondary" href="/inventory/index.php">Back</a>
     </div>
 
 </div>

@@ -37,6 +37,8 @@ include "../includes/auth_check.php";
 
     </form>
 
+    <a class="btn btn-secondary" href="list.php">Back to list</a>
+
     <div id="msg" class="form-msg"></div>
 </div>
 

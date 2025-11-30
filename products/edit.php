@@ -39,6 +39,8 @@ if (!$product) die("Product not found");
         <button class="btn btn-primary" type="submit">Save Changes</button>
     </form>
 
+    <a class="btn btn-secondary" href="list.php">Back to list</a>
+
     <div id="msg" class="form-msg"></div>
 </div>
 
