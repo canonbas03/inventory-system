@@ -3,7 +3,6 @@ include "../../includes/auth_check.php";
 include "../../includes/db.php";
 include "../../includes/audit.php";
 
-
 $name = trim($_POST["name"] ?? '');
 $sku = trim($_POST["sku"] ?? '');
 $quantity = intval($_POST["quantity"] ?? 0);
@@ -12,58 +11,47 @@ $category_id = intval($_POST["category"] ?? 0);
 $supplier_id = intval($_POST["supplier"] ?? 0);
 $critical = intval($_POST["critical"] ?? 0);
 
-$isValid = true;
-if (
-    empty($name) ||
-    empty($sku) ||
-    $quantity <= 0 ||
-    $price < 0 ||
-    !$category_id ||
-    !$supplier_id
-) {
-    $isValid = false;
+
+if (empty($name) || empty($sku) || $quantity < 0 || $price < 0 || !$category_id || !$supplier_id) {
+    echo "Name, SKU, quantity, price, category, and supplier are required!";
+    exit;
 }
 
-if ($isValid) {
+$stmtCheck = $conn->prepare("SELECT id FROM products WHERE sku = ?");
+$stmtCheck->bind_param("s", $sku);
+$stmtCheck->execute();
+$stmtCheck->store_result();
 
-    $stmt = $conn->prepare("
-            INSERT INTO products (name, sku, quantity, price, category_id, supplier_id, critical_level)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-    $stmt->bind_param("ssidiii", $name, $sku, $quantity, $price, $category_id, $supplier_id, $critical);
+if ($stmtCheck->num_rows > 0) {
+    echo "A product with SKU '$sku' already exists!";
+    exit;
+}
 
-    if ($stmt->execute()) {
-        $product_id = $stmt->insert_id;
+$stmt = $conn->prepare("
+    INSERT INTO products (name, sku, quantity, price, category_id, supplier_id, critical_level)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+");
+$stmt->bind_param("ssidiii", $name, $sku, $quantity, $price, $category_id, $supplier_id, $critical);
 
-        $change_amount = $quantity; // initial movement is +quantity
-        $old_quantity = 0;
-        $new_quantity = $quantity;
+if ($stmt->execute()) {
+    $product_id = $stmt->insert_id;
 
-        $mov = $conn->prepare("
-                        INSERT INTO stock_movements 
-                        (product_id, change_amount, old_quantity, new_quantity, reason, created_by)
-                        VALUES (?, ?, ?, ?, 'add', ?)
-                        ");
+    $change_amount = $quantity;
+    $old_quantity = 0;
+    $new_quantity = $quantity;
 
-        $mov->bind_param(
-            "iiiii",
-            $product_id,
-            $change_amount,
-            $old_quantity,
-            $new_quantity,
-            $_SESSION['user_id']
-        );
+    $mov = $conn->prepare("
+        INSERT INTO stock_movements 
+        (product_id, change_amount, old_quantity, new_quantity, reason, created_by)
+        VALUES (?, ?, ?, ?, 'add', ?)
+    ");
+    $mov->bind_param("iiiii", $product_id, $change_amount, $old_quantity, $new_quantity, $_SESSION['user_id']);
+    $mov->execute();
 
-        $mov->execute();
+    // Log audit
+    log_action($conn, $_SESSION['user_id'], 'add', 'products', $product_id, "Added product $name");
 
-        // Log audit
-        log_action($conn, $_SESSION['user_id'], 'add', 'products', $product_id, "Added product $name");
-
-        echo "OK";
-        exit;
-    } else {
-        echo "Error adding product: " . $conn->error;
-    }
+    echo "OK";
 } else {
-    echo "Name, SKU, category, and supplier are required!";
+    echo "Error adding product: " . $conn->error;
 }
