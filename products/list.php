@@ -21,9 +21,13 @@ include "../includes/header.php";
     <select id="filter-supplier" name="supplier">
         <option value="">All Suppliers</option>
     </select>
+
+    <a href="#" id="export-csv" class="button-link">Export CSV</a>
+
 </form>
 
-<a class='button-link' href="export_products.php" class="btn">Export CSV</a>
+
+<a class='button-link' href="export_products.php" class="btn">Export CSV old</a>
 <a class='button-link' href="export_products.php?category=2&supplier=5" class="btn">Export Filtered CSV</a>
 
 

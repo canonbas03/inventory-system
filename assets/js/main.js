@@ -217,4 +217,19 @@ function loadLowStock() {
 
 
 });
+
+    $("#export-csv").on("click", function(e) {
+    e.preventDefault();
+
+    let q = $("#search").val();
+    let category = $("#filter-category").val();
+    let supplier = $("#filter-supplier").val();
+
+    let url = `/inventory/products/export_products.php?q=${encodeURIComponent(q)}&category=${category}&supplier=${supplier}`;
+    window.location.href = url;
+});
+
+
+
+
 });
