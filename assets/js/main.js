@@ -90,12 +90,12 @@ function loadLowStock() {
     $(document).on("click", ".qty-btn", function () {
         selectedProductId = $(this).data("id");
         $("#qty-modal").css("display", "flex");
+        $("#qty-amount").val("").focus(); 
     });
 
     // Close modal
     $("#qty-close").on("click", function () {
         $("#qty-modal").hide();
-        $("#qty-amount").val(1);
     });
 
     // Increase

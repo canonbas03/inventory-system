@@ -356,7 +356,7 @@ nav ul li.user-info a:hover {
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.5);
-    justify-content: right;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -367,11 +367,13 @@ nav ul li.user-info a:hover {
     width: 300px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    margin-right: 30px;
 }
 
 .modal input {
     width: 100%;
     margin: 10px 0 15px 0;
     padding: 8px;
+    box-sizing: border-box;
 }
 
