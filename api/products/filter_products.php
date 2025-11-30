@@ -1,12 +1,10 @@
 <?php
 include "../../includes/db.php";
 
-// Get filter values from GET parameters
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $category = isset($_GET['category']) && $_GET['category'] !== '' ? intval($_GET['category']) : null;
 $supplier = isset($_GET['supplier']) && $_GET['supplier'] !== '' ? intval($_GET['supplier']) : null;
 
-// Base SQL
 $sql = "
     SELECT p.*, c.name AS category, s.name AS supplier
     FROM products p
@@ -18,7 +16,6 @@ $sql = "
 $params = [];
 $types = "";
 
-// Search filter
 if (!empty($q)) {
     $sql .= " AND (p.name LIKE ? OR p.sku LIKE ? OR c.name LIKE ? OR s.name LIKE ?)";
     $types .= "ssss";
@@ -30,21 +27,18 @@ if (!empty($q)) {
 }
 
 
-// Category filter
 if ($category) {
     $sql .= " AND p.category_id = ?";
     $types .= "i";
     $params[] = $category;
 }
 
-// Supplier filter
 if ($supplier) {
     $sql .= " AND p.supplier_id = ?";
     $types .= "i";
     $params[] = $supplier;
 }
 
-// Prepare statement
 $stmt = $conn->prepare($sql);
 if (!empty($params)) {
     $stmt->bind_param($types, ...$params);
@@ -52,7 +46,6 @@ if (!empty($params)) {
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Output table rows
 while ($row = $result->fetch_assoc()) {
     echo "<tr>
         <td>{$row['id']}</td>
