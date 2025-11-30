@@ -26,11 +26,6 @@ include "../includes/header.php";
 
 </form>
 
-
-<a class='button-link' href="export_products.php" class="btn">Export CSV old</a>
-<a class='button-link' href="export_products.php?category=2&supplier=5" class="btn">Export Filtered CSV</a>
-
-
 <div id="product-table">
     <table border="1" cellpadding="10">
         <thead>
