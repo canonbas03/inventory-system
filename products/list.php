@@ -16,7 +16,6 @@ include "../includes/header.php";
         <option value="">All Categories</option>
     </select>
 
-
     <label>Supplier:</label>
     <select id="filter-supplier" name="supplier">
         <option value="">All Suppliers</option>
