@@ -1,7 +1,7 @@
 <?php
-include "../includes/db.php";
-include "../includes/auth_check.php";
-include "../includes/audit.php";
+include "../../includes/db.php";
+include "../../includes/auth_check.php";
+include "../../includes/audit.php";
 
 $category = isset($_GET['category']) && $_GET['category'] !== '' ? intval($_GET['category']) : null;
 $supplier = isset($_GET['supplier']) && $_GET['supplier'] !== '' ? intval($_GET['supplier']) : null;

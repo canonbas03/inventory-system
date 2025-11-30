@@ -35,7 +35,7 @@ function loadLowStock() {
     // === PRODUCTS === \\
     loadProducts();
     function loadProducts() {
-        var query = $("#search").val();                // search text
+        var query = $("#product-search").val();                // search text
         var category = $("#filter-category").val();     // selected category
         var supplier = $("#filter-supplier").val();     // selected supplier
 
@@ -56,7 +56,7 @@ function loadLowStock() {
     }
 
     // Search
-    $("#search").on("keyup", loadProducts);
+    $("#product-search").on("keyup", loadProducts);
     $("#filter-category, #filter-supplier").on("change", loadProducts);
 
     // Edit products
@@ -218,17 +218,45 @@ function loadLowStock() {
 
 });
 
-    $("#export-csv").on("click", function(e) {
+    $("#products-export-csv").on("click", function(e) {
     e.preventDefault();
 
-    let q = $("#search").val();
+    let q = $("#product-search").val();
     let category = $("#filter-category").val();
     let supplier = $("#filter-supplier").val();
 
-    let url = `/inventory/products/export_products.php?q=${encodeURIComponent(q)}&category=${category}&supplier=${supplier}`;
+    let url = `/inventory/api/products/export_products.php?q=${encodeURIComponent(q)}&category=${category}&supplier=${supplier}`;
     window.location.href = url;
 });
 
+
+// === AUDIT LOGS === \\
+loadAuditLogs();
+
+function loadAuditLogs() {
+    var query = $("#search").val(); // search text
+
+    $.ajax({
+        url: "/inventory/api/audit/filter_audit.php",
+        method: "GET",
+        data: { q: query },
+        success: function(data) {
+            $("#audit-table tbody").html(data);
+        }
+    });
+}
+
+// Trigger reload on search input change
+$("#search").on("input", loadAuditLogs);
+
+// Export CSV
+$("#audit-export-csv").on("click", function(e) {
+    e.preventDefault();
+
+    var q = $("#search").val();
+    var url = `/inventory/api/audit/export_audit.php?q=${encodeURIComponent(q)}`;
+    window.location.href = url;
+});
 
 
 
