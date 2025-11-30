@@ -39,6 +39,14 @@ td.actions {
     text-align: center;
 }
 
+/* Global table header styling */
+table th {
+    background-color: #1e0e03; 
+    color: #fff;          
+    padding: 10px;         
+    text-align: center;     
+}
+
 
 /* DASHBOARD */
 .dashboard-cards {
