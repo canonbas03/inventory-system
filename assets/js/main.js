@@ -83,6 +83,7 @@ function loadLowStock() {
          });
     });
 
+    // === MODAL === \\ 
     // Quick edit products
    let selectedProductId = null;
 
@@ -246,7 +247,6 @@ function loadAuditLogs() {
     });
 }
 
-// Trigger reload on search input change
 $("#search").on("input", loadAuditLogs);
 
 // Export CSV
