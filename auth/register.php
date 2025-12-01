@@ -18,29 +18,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
 
     if ($username && $password) {
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $hash, $role);
-        if ($stmt->execute()) {
-            $success = "User created successfully!";
 
-            // Log the action
-            $admin_username = $_SESSION['username']; // who created the user
-            log_action(
-                $conn,
-                $_SESSION['user_id'],
-                'register',
-                'users',
-                $conn->insert_id,
-                "Admin '$admin_username' registered new user '$username' with role '$role'"
-            );
+        $check = $conn->prepare("SELECT id FROM users WHERE username = ?");
+        $check->bind_param("s", $username);
+        $check->execute();
+        $result = $check->get_result();
+
+        if ($result->num_rows > 0) {
+            $error = "The username '$username' already exists!";
         } else {
-            $error = "Error: " . $conn->error;
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $hash, $role);
+
+            if ($stmt->execute()) {
+                $success = "User created successfully!";
+
+                $admin_username = $_SESSION['username'];
+                log_action(
+                    $conn,
+                    $_SESSION['user_id'],
+                    'register',
+                    'users',
+                    $conn->insert_id,
+                    "Admin '$admin_username' registered new user '$username' with role '$role'"
+                );
+            } else {
+                $error = "Error: " . $conn->error;
+            }
         }
     } else {
         $error = "Please fill in all fields!";
     }
 }
+
 ?>
 
 <link rel="stylesheet" href="/inventory/assets/css/style.css">
