@@ -5,6 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 if (!isset($_SESSION['user_id'])) {
     // Not logged in → redirect to login page
-    header("Location: /inventory/auth/login.php");
+    header("Location: auth/login.php");
     exit;
 }

@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
-    $("#filter-category").load("/inventory/api/categories/get_categories.php");
-    $("#filter-supplier").load("/inventory/api/suppliers/get_suppliers.php");
+    $("#filter-category").load("../api/categories/get_categories.php");
+    $("#filter-supplier").load("../api/suppliers/get_suppliers.php");
     // === DASHBOARD === \\
     // LOAD TOTAL COUNTS
     loadCounts();
     function loadCounts() {
-    $.get("/inventory/api/dashboard/get_counts.php", function(response) {
+    $.get("api/dashboard/get_counts.php", function(response) {
         let parts = response.split("|||");
         $("#total-products").text(parts[0]);
         $("#total-categories").text(parts[1]);
@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 loadLowStock();
 function loadLowStock() {
-    $.get("/inventory/api/products/get_low_stock_products.php", function(response) {
+    $.get("api/products/get_low_stock_products.php", function(response) {
         let parts = response.split("|||");
         let count = parts[0].trim();
         let html = parts[1];
@@ -28,8 +28,8 @@ function loadLowStock() {
 
 
 
-    $("#category-select").load("/inventory/api/categories/get_categories.php");
-    $("#supplier-select").load("/inventory/api/suppliers/get_suppliers.php");
+    $("#category-select").load("../api/categories/get_categories.php");
+    $("#supplier-select").load("../api/suppliers/get_suppliers.php");
     
     
     // === PRODUCTS === \\
@@ -40,7 +40,7 @@ function loadLowStock() {
         var supplier = $("#filter-supplier").val();     // selected supplier
 
         $.ajax({
-            url: "/inventory/api/products/filter_products.php",        // unified endpoint
+            url: "../api/products/filter_products.php",        // unified endpoint
             method: "GET",
             data: {
                 q: query,
@@ -65,7 +65,7 @@ function loadLowStock() {
 
     let id = $(this).data("id");
 
-    window.location.href = "/inventory/products/edit.php?id=" + id;
+    window.location.href = "../products/edit.php?id=" + id;
     });
 
     // Delete products
@@ -76,7 +76,7 @@ function loadLowStock() {
 
     let id = $(this).data("id");
 
-    $.post("/inventory/api/products/delete_product.php", { id: id }, function (response) {
+    $.post("../api/products/delete_product.php", { id: id }, function (response) {
         loadProducts();
         loadCounts();
         loadLowStock();
@@ -112,7 +112,7 @@ function loadLowStock() {
     function updateQuantity(type) {
         let amount = $("#qty-amount").val();
 
-        $.post("/inventory/api/products/update_quantity.php",
+        $.post("../api/products/update_quantity.php",
             {
                 id: selectedProductId,
                 amount: amount,
@@ -140,7 +140,7 @@ function loadLowStock() {
      loadSuppliers();
      function loadSuppliers() {
              $.ajax({
-                    url: "/inventory/api/suppliers/filter_suppliers.php",
+                    url: "../api/suppliers/filter_suppliers.php",
                     method: "GET",
                     data: {
                         q: $("#search-supplier").val()
@@ -172,7 +172,7 @@ function loadLowStock() {
 
         let id = $(this).data("id");
 
-        $.post("/inventory/api/suppliers/delete_supplier.php", { id: id }, loadSuppliers);
+        $.post("../api/suppliers/delete_supplier.php", { id: id }, loadSuppliers);
     });
 
 
@@ -181,7 +181,7 @@ function loadLowStock() {
      loadCategories(); 
      function loadCategories() {
             $.ajax({
-                url: "/inventory/api/categories/filter_categories.php",
+                url: "../api/categories/filter_categories.php",
                 method: "GET",
                 data: {
                     q: $("#search-category").val()
@@ -214,7 +214,7 @@ function loadLowStock() {
 
     let id = $(this).data("id");
 
-    $.post("/inventory/api/categories/delete_category.php", { id: id }, loadCategories);
+    $.post("../api/categories/delete_category.php", { id: id }, loadCategories);
 
 
 });
@@ -226,7 +226,7 @@ function loadLowStock() {
     let category = $("#filter-category").val();
     let supplier = $("#filter-supplier").val();
 
-    let url = `/inventory/api/products/export_products.php?q=${encodeURIComponent(q)}&category=${category}&supplier=${supplier}`;
+    let url = `../api/products/export_products.php?q=${encodeURIComponent(q)}&category=${category}&supplier=${supplier}`;
     window.location.href = url;
 });
 
@@ -238,7 +238,7 @@ function loadAuditLogs() {
     var query = $("#search").val(); // search text
 
     $.ajax({
-        url: "/inventory/api/audit/filter_audit.php",
+        url: "../api/audit/filter_audit.php",
         method: "GET",
         data: { q: query },
         success: function(data) {
@@ -254,7 +254,7 @@ $("#audit-export-csv").on("click", function(e) {
     e.preventDefault();
 
     var q = $("#search").val();
-    var url = `/inventory/api/audit/export_audit.php?q=${encodeURIComponent(q)}`;
+    var url = `../api/audit/export_audit.php?q=${encodeURIComponent(q)}`;
     window.location.href = url;
 });
 

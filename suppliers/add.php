@@ -34,13 +34,13 @@ include "../includes/header.php";
         $.post("../api/suppliers/add_supplier.php", $(this).serialize(), function(response) {
 
             if (response.trim() === "OK") {
-                $("#msg").css("color", "green").text("Product added successfully!");
+                $("#msg").css("color", "green").text("Supplier added successfully!");
 
                 setTimeout(() => {
                     window.location.href = "list.php";
                 }, 800);
             } else {
-                $("#msg").css("color", "red").text("Errorbaby: " + response);
+                $("#msg").css("color", "red").text("Error: " + response);
             }
         });
     });

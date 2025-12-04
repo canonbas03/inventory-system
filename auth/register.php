@@ -5,7 +5,7 @@ include "../includes/audit.php";
 
 // Only admin can access
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: /inventory/auth/login.php");
+    header("Location: auth/login.php");
     exit;
 }
 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-<link rel="stylesheet" href="/inventory/assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 <div class="auth-wrapper">
     <div class="auth-card">
         <h2>Register</h2>
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Create User</button>
         </form>
-        <a class="btn btn-secondary" href="/inventory/index.php">Back</a>
+        <a class="btn btn-secondary" href="../index.php">Back</a>
     </div>
 
 </div>
