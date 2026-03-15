@@ -5,6 +5,18 @@ A **web-based inventory management system** designed to efficiently track produc
 ![Dashboard Screenshot](https://github.com/user-attachments/assets/dfbcdacb-c901-467d-a3ab-bd9e77b09dff)
 
 ---
+## Key Highlights
+
+- Implements REST-style API endpoints for seamless dynamic data operations.
+
+- Tracks stock movements to maintain a complete audit trail.
+
+- Uses AJAX and jQuery to update tables in real time without page reloads.
+
+- Demonstrates strong full-stack skills in PHP, MySQL, JavaScript, and frontend design.
+
+
+---
 
 ## Features
 
@@ -56,13 +68,3 @@ Stock Movement Audit Log:
 
 **Add Product Page:**  
 ![Add Product Page](https://github.com/user-attachments/assets/3ae1bd8b-079e-4d77-a7db-c56715554cd3)
-
-## Key Highlights
-
-- Implements REST-style API endpoints for seamless dynamic data operations.
-
-- Tracks stock movements to maintain a complete audit trail.
-
-- Uses AJAX and jQuery to update tables in real time without page reloads.
-
-- Demonstrates strong full-stack skills in PHP, MySQL, JavaScript, and frontend design.
