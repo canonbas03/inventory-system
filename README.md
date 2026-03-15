@@ -31,7 +31,7 @@ A **web-based inventory management system** designed to efficiently track produc
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/canonbas03/warehouse-inventory.git
+   git clone https://github.com/canonbas03/inventory-system.git
    ```
 2. Import the database from database.sql into your local MySQL server.
 
@@ -39,7 +39,7 @@ A **web-based inventory management system** designed to efficiently track produc
 
 4. Start your local PHP server (XAMPP, WAMP, or similar).
 
-5. Navigate to http://localhost/warehouse-inventory in your browser.
+5. Navigate to http://localhost/inventory-system in your browser
 
 ---
 
